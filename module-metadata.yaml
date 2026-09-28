@@ -1,0 +1,42 @@
+schemaVersion: 1
+modules:
+  - moduleId: zalava-module-brave-search
+    version: 0.1.0-alpha.1
+    displayName: Brave Search
+    description: Provider-scoped web search backed by Brave Search.
+    supportUrl: https://github.com/Zalava/zalava-module-brave-search
+    artifact:
+      groupId: org.zalava.modules
+      artifactId: zalava-module-brave-search
+      version: 0.1.0-alpha.1
+    source:
+      repository: https://github.com/Zalava/zalava-module-brave-search.git
+      license: Apache-2.0
+    build:
+      command: ["./gradlew", "build"]
+      verificationCommand: ["./gradlew", "test"]
+    compatibility:
+      seaRuntime: ">=1.0.0 <2.0.0"
+    configurationSchema:
+      type: object
+      additionalProperties: false
+      required: ["brave-search"]
+      properties:
+        brave-search:
+          type: object
+          required: ["apiKeyRef"]
+          additionalProperties: false
+          properties:
+            apiKeyRef:
+              type: string
+              x-secret-reference: true
+              description: Reference to the Brave Search API key.
+    factories:
+      - factoryId: brave-search
+        providerType: web-search
+    services:
+      provided: []
+      required: []
+    operations: []
+    security:
+      permissions: [network]

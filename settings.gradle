@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories { gradlePluginPortal() }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        maven {
+            url = uri(providers.gradleProperty('zalavaRepositoryUrl')
+                    .orElse('https://zalava.github.io/zalava-maven/')
+                    .get())
+        }
+    }
+}
+
+rootProject.name = 'zalava-module-brave-search'
