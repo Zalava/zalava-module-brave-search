@@ -1,14 +1,14 @@
 schemaVersion: 1
 modules:
   - moduleId: zalava-module-brave-search
-    version: 0.1.0-alpha.1
+    version: 0.1.0-alpha.2
     displayName: Brave Search
     description: Provider-scoped web search backed by Brave Search.
     supportUrl: https://github.com/Zalava/zalava-module-brave-search
     artifact:
       groupId: org.zalava.modules
       artifactId: zalava-module-brave-search
-      version: 0.1.0-alpha.1
+      version: 0.1.0-alpha.2
     source:
       repository: https://github.com/Zalava/zalava-module-brave-search.git
       license: Apache-2.0

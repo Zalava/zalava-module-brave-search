@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import org.zalava.FactorySecretAccess;
 import org.zalava.InvocationContext;
-import org.zalava.SeaProvider;
+import org.zalava.ZalavaProvider;
 import org.zalava.testing.ConfigFixture;
 import org.zalava.testing.ModuleContractKit;
 import org.zalava.testing.ProviderFixture;
@@ -79,7 +79,7 @@ class BraveSearchSeaModuleTest {
     @Test
     void resolvesTheConfiguredSecretReferenceAndDeclaresItsTool() {
         try (ProviderFixture providers = kit.providers(configuration("brave-production", usableSecrets()))) {
-            SeaProvider provider = providers.requireProvider(PROVIDER_ID);
+            ZalavaProvider provider = providers.requireProvider(PROVIDER_ID);
 
             assertThat(provider.descriptor().moduleId()).isEqualTo(MODULE_ID);
             assertThat(provider.descriptor().version()).isEqualTo(System.getProperty("module.version"));
@@ -103,7 +103,7 @@ class BraveSearchSeaModuleTest {
     @Test
     void rejectsUnknownToolsAndBlankQueriesWithoutContactingBrave() {
         try (ProviderFixture providers = kit.providers(configuration("brave-production", usableSecrets()))) {
-            SeaProvider provider = providers.requireProvider(PROVIDER_ID);
+            ZalavaProvider provider = providers.requireProvider(PROVIDER_ID);
 
             assertThatThrownBy(() -> provider.callTool("other", arguments(), InvocationContext.system()))
                     .isInstanceOf(IllegalArgumentException.class)
