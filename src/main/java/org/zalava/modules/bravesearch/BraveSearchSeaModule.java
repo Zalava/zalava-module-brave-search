@@ -3,7 +3,7 @@ package org.zalava.modules.bravesearch;
 import org.zalava.ModuleConfigurationDescriptor;
 import org.zalava.ModuleDescriptor;
 import org.zalava.ProviderFactory;
-import org.zalava.SeaModule;
+import org.zalava.ZalavaModule;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-public final class BraveSearchSeaModule implements SeaModule {
+public final class BraveSearchSeaModule implements ZalavaModule {
     static final String MODULE_ID = "zalava-module-brave-search";
     static final String FACTORY_ID = "brave-search";
 

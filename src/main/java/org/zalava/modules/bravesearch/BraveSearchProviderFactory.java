@@ -3,7 +3,7 @@ package org.zalava.modules.bravesearch;
 import org.zalava.ProviderFactory;
 import org.zalava.ProviderFactoryContext;
 import org.zalava.ProviderFactoryDescriptor;
-import org.zalava.SeaProvider;
+import org.zalava.ZalavaProvider;
 
 import java.net.http.HttpClient;
 import java.util.List;
@@ -16,7 +16,7 @@ final class BraveSearchProviderFactory implements ProviderFactory {
     }
 
     @Override
-    public List<SeaProvider> createProviders(ProviderFactoryContext context) {
+    public List<ZalavaProvider> createProviders(ProviderFactoryContext context) {
         String reference = configuredReference(context.configuration().get("apiKeyRef"));
         if (reference == null) return List.of();
         char[] apiKey = context.secrets().resolve(reference)
