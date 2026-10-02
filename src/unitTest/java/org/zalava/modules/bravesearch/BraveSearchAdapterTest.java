@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.zalava.InvocationContext;
-import org.zalava.ProviderFactoryContext;
+import org.zalava.api.InvocationContext;
+import org.zalava.api.ProviderFactoryContext;
 import tools.jackson.databind.json.JsonMapper;
 
 class BraveSearchAdapterTest {
@@ -75,20 +75,37 @@ class BraveSearchAdapterTest {
     BraveSearchProvider provider = new BraveSearchProvider(client);
     assertThat(provider.capabilities().supportsTools()).isTrue();
     assertThatThrownBy(
-            () -> provider.callTool("unknown", JSON.createObjectNode(), InvocationContext.system()))
+            () ->
+                provider.callTool(
+                    "unknown",
+                    new tools.jackson.databind.json.JsonMapper()
+                        .convertValue(
+                            JSON.createObjectNode(),
+                            new tools.jackson.core.type.TypeReference<
+                                java.util.Map<String, Object>>() {}),
+                    InvocationContext.system()))
         .hasMessageContaining("Unknown web search tool");
     for (String arguments : List.of("{}", "{\"query\":\" \"}")) {
       assertThatThrownBy(
               () ->
                   provider.callTool(
-                      "webSearch", JSON.readTree(arguments), InvocationContext.system()))
+                      "webSearch",
+                      new tools.jackson.databind.json.JsonMapper()
+                          .convertValue(
+                              JSON.readTree(arguments),
+                              new tools.jackson.core.type.TypeReference<
+                                  java.util.Map<String, Object>>() {}),
+                      InvocationContext.system()))
           .hasMessage("Search query is required");
     }
     var result =
         provider.callTool(
             "webSearch",
-            JSON.readTree(
-                "{\"query\":\"query\",\"allowedDomains\":[\"\",\"allowed.example\"],\"blockedDomains\":false}"),
+            new tools.jackson.databind.json.JsonMapper()
+                .convertValue(
+                    JSON.readTree(
+                        "{\"query\":\"query\",\"allowedDomains\":[\"\",\"allowed.example\"],\"blockedDomains\":false}"),
+                    new tools.jackson.core.type.TypeReference<java.util.Map<String, Object>>() {}),
             InvocationContext.system());
     assertThat(result.success()).isTrue();
     assertThat(result.metadata()).containsEntry("allowedDomains", List.of("allowed.example"));
