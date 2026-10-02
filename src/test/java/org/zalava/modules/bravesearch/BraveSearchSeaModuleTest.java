@@ -10,12 +10,12 @@ import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.zalava.FactorySecretAccess;
-import org.zalava.InvocationContext;
-import org.zalava.ZalavaProvider;
-import org.zalava.testing.ConfigFixture;
-import org.zalava.testing.ModuleContractKit;
-import org.zalava.testing.ProviderFixture;
+import org.zalava.api.FactorySecretAccess;
+import org.zalava.api.InvocationContext;
+import org.zalava.api.ZalavaProvider;
+import org.zalava.api.testing.ConfigFixture;
+import org.zalava.api.testing.ModuleContractKit;
+import org.zalava.api.testing.ProviderFixture;
 import tools.jackson.databind.node.JsonNodeFactory;
 import tools.jackson.databind.node.ObjectNode;
 
@@ -115,11 +115,28 @@ class BraveSearchSeaModuleTest {
         kit.providers(configuration("brave-production", usableSecrets()))) {
       ZalavaProvider provider = providers.requireProvider(PROVIDER_ID);
 
-      assertThatThrownBy(() -> provider.callTool("other", arguments(), InvocationContext.system()))
+      assertThatThrownBy(
+              () ->
+                  provider.callTool(
+                      "other",
+                      new tools.jackson.databind.json.JsonMapper()
+                          .convertValue(
+                              arguments(),
+                              new tools.jackson.core.type.TypeReference<
+                                  java.util.Map<String, Object>>() {}),
+                      InvocationContext.system()))
           .isInstanceOf(IllegalArgumentException.class)
           .hasMessage("Unknown web search tool: other");
       assertThatThrownBy(
-              () -> provider.callTool("webSearch", arguments(), InvocationContext.system()))
+              () ->
+                  provider.callTool(
+                      "webSearch",
+                      new tools.jackson.databind.json.JsonMapper()
+                          .convertValue(
+                              arguments(),
+                              new tools.jackson.core.type.TypeReference<
+                                  java.util.Map<String, Object>>() {}),
+                      InvocationContext.system()))
           .isInstanceOf(IllegalArgumentException.class)
           .hasMessage("Search query is required");
     }
