@@ -10,7 +10,7 @@ import org.zalava.api.ModuleDescriptor;
 import org.zalava.api.ProviderFactory;
 import org.zalava.api.ZalavaModule;
 
-public final class BraveSearchSeaModule implements ZalavaModule {
+public final class BraveSearchZalavaModule implements ZalavaModule {
   static final String MODULE_ID = "zalava-module-brave-search";
   static final String FACTORY_ID = "brave-search";
 
@@ -56,7 +56,8 @@ public final class BraveSearchSeaModule implements ZalavaModule {
 
   static String version() {
     Properties properties = new Properties();
-    try (InputStream input = BraveSearchSeaModule.class.getResourceAsStream("/module.properties")) {
+    try (InputStream input =
+        BraveSearchZalavaModule.class.getResourceAsStream("/module.properties")) {
       if (input == null) {
         throw new IllegalStateException("Missing module version metadata");
       }

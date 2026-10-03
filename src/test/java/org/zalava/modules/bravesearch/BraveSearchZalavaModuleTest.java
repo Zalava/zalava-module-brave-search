@@ -22,9 +22,9 @@ import tools.jackson.databind.node.ObjectNode;
 /**
  * Exercises the real built module JAR at the stable {@code module-api} boundary through the
  * released contract kit. Host-owned resolution, validation, permissions and transport stay covered
- * by SEA.
+ * by Zalava.
  */
-class BraveSearchSeaModuleTest {
+class BraveSearchZalavaModuleTest {
 
   private static final String MODULE_ID = "zalava-module-brave-search";
   private static final String FACTORY_ID = "brave-search";
@@ -95,7 +95,7 @@ class BraveSearchSeaModuleTest {
               tool -> {
                 assertThat(tool.name()).isEqualTo("webSearch");
                 assertThat(tool.sideEffecting()).isFalse();
-                assertThat(tool.policyTags()).contains("sea_backed", "web-search", "network");
+                assertThat(tool.policyTags()).contains("zalava_backed", "web-search", "network");
               });
     }
   }
