@@ -18,7 +18,7 @@ final class BraveSearchProvider implements ZalavaProvider {
           "webSearch",
           "Search the web using Brave Search and optional domain filters.",
           false,
-          List.of("sea_backed", "web-search", "network"),
+          List.of("zalava_backed", "web-search", "network"),
           ZalavaToolInputSchemas.object(
               Map.of(
                   "query", ZalavaToolInputSchemas.string(),
@@ -29,13 +29,13 @@ final class BraveSearchProvider implements ZalavaProvider {
   private final ProviderDescriptor descriptor =
       new ProviderDescriptor(
           "brave-search",
-          BraveSearchSeaModule.MODULE_ID,
+          BraveSearchZalavaModule.MODULE_ID,
           "web-search",
           "Brave Search",
           "Provider-scoped web search backed by Brave Search.",
-          BraveSearchSeaModule.version(),
+          BraveSearchZalavaModule.version(),
           ProviderCapabilities.toolsOnly(),
-          List.of("sea_backed", "web-search", "network"),
+          List.of("zalava_backed", "web-search", "network"),
           Map.of("service", "brave"));
 
   BraveSearchProvider(BraveSearchClient client) {

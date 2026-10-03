@@ -11,8 +11,8 @@ final class BraveSearchProviderFactory implements ProviderFactory {
   @Override
   public ProviderFactoryDescriptor descriptor() {
     return new ProviderFactoryDescriptor(
-        BraveSearchSeaModule.FACTORY_ID,
-        BraveSearchSeaModule.MODULE_ID,
+        BraveSearchZalavaModule.FACTORY_ID,
+        BraveSearchZalavaModule.MODULE_ID,
         "web-search",
         "Brave Search Factory",
         "Creates provider-scoped Brave Search clients.");
