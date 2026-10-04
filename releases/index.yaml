@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "zalava-module-brave-search",
+  "releases": [
+    {
+      "version": "0.1.0-alpha.4",
+      "releaseTag": "v0.1.0-alpha.4",
+      "artifact": {
+        "groupId": "org.zalava.modules",
+        "artifactId": "zalava-module-brave-search",
+        "version": "0.1.0-alpha.4",
+        "sha256": "488d381b558d55ba3dd928e795b9dae95225621bf8846b750eea773c598df19a",
+        "type": "github-release-assets",
+        "repositoryUri": "https://github.com/Zalava/zalava-module-brave-search",
+        "releaseTag": "v0.1.0-alpha.4",
+        "assetName": "zalava-module-brave-search-0.1.0-alpha.4.jar"
+      },
+      "artifactBundle": false,
+      "source": {
+        "repository": "https://github.com/Zalava/zalava-module-brave-search.git",
+        "revision": "c75171ea7a539631ee3b3d43a1fee0d5b5f63e97",
+        "license": "Apache-2.0"
+      },
+      "compatibility": {
+        "zalavaRuntime": ">=1.0.0 <2.0.0"
+      },
+      "security": {
+        "permissions": [
+          "network"
+        ]
+      }
+    }
+  ]
+}
